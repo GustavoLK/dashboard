@@ -9,7 +9,7 @@ dependencies:
   - pip
   - pip:
       - hummingbot==20240129
-      - streamlit
+      - streamlit==1.33.0
       - watchdog
       - plotly
       - pycoingecko

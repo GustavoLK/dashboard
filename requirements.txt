@@ -9,3 +9,16 @@
 - pandas_ta
 - sqlalchemy
 - pyyaml
+streamlit~=1.33.0
+plotly~=5.22.0
+defillama~=2.3.0
+pathlib~=1.0.1
+hummingbot~=20240129
+pyyaml~=6.0.1
+hbotrc~=0.1.0
+requests~=2.31.0
+glom~=23.5.0
+pycoingecko~=3.1.0
+sqlalchemy~=2.0.25
+pydantic~=1.10.4
+optuna~=3.6.1

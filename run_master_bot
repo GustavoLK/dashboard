@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Master boot doesn't run from dashboar app because it calls DockerManager().create_hummingbot_instance
+# and DockerManager is in a pip package which doesn't have been updated since 2018. When this method is called
+# it make a comand to run a docker container like the current command but uses relatives path, which docker CLI
+# doesn't allow. I think, seen how old the docker-manager lates versions is, this never worked. Anyway, this command
+# runs the conatainer and the dashboard app see it running
+
+docker run -it -d --log-opt max-size=10m --log-opt max-file=5 --name hummingbot-master_bot_conf --network host \
+    -v `pwd`/hummingbot_files/templates/master_bot_conf/conf:/home/hummingbot/conf \
+    -v `pwd`/hummingbot_files/templates/master_bot_conf/conf/connectors:/home/hummingbot/conf/connectors \
+    -v `pwd`/hummingbot_files/templates/master_bot_conf/conf/strategies:/home/hummingbot/conf/strategies \
+    -v `pwd`/hummingbot_files/templates/master_bot_conf/logs:/home/hummingbot/logs \
+    -v `pwd`/hummingbot_files/templates/master_bot_conf/data/:/home/hummingbot/data \
+    -v `pwd`/hummingbot_files/templates/master_bot_conf/scripts:/home/hummingbot/scripts \
+    -v `pwd`/hummingbot_files/templates/master_bot_conf/certs:/home/hummingbot/certs \
+    -e CONFIG_PASSWORD=a hummingbot/hummingbot:latest
